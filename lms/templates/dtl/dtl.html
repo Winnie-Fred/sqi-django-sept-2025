@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTL</title>
+</head>
+<body>
+    <h1>Django Template Language Demo</h1>
+    <h2>Hello, {{ my_name|lower }} 👋</h2>
+    <h3>Today is {{ today|date:"Y-m-d" }}</h3>
+    <div>
+        <p>{{ my_name }} is {{ age }} years old.</p>
+    </div>
+
+    <div>
+        <h3>My hobbies</h3>
+        <ol>
+            {% for hobby in hobbies %}
+                <li>{{ hobby }}</li>
+            {% endfor %}
+        </ol>
+    </div>
+
+    <h3>Weight: {{ weight }}</h3>
+
+    {% if is_logged_in %}
+        <div>Notifications</div>
+        <ul>
+            {% for notification in notifications %}
+                <li>{{ notification }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Please log in</p>
+    {% endif %}
+
+    <div>
+        {% for profile_key, profile_value in profile.items %}
+            <p>{{ profile_key }} -> {{ profile_value }}</p>
+        {% endfor %}
+    </div>
+
+    <div>
+        {% for address_key, address_value in profile.address.items %}
+            <p>{{ address_key }}: {{ address_value }}</p>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

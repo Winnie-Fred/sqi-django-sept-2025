@@ -7,3 +7,5 @@ def home(request):
 
 def book_list(request):
     return render(request, "library/book-list.html")
+
+# django template language - DTL
