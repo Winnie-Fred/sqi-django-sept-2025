@@ -1,18 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book List</title>
-</head>
-<body>
-    <h1>List of Books</h1>
-    <ul>
-        <li>Book 1</li>
-        <li>Book 2</li>
-        <li>Book 3</li>
-        <li>Book 4</li>
-        <li>Book 5</li>
-    </ul>
-</body>
-</html>
+{% extends "partials/base.html" %}
+
+{% block title %}
+Book List
+{% endblock title %}
+
+
+{% block body %}
+<h1>List of Books</h1>
+<ul>
+    <li>Book 1</li>
+    <li>Book 2</li>
+    <li>Book 3</li>
+    <li>Book 4</li>
+    <li>Book 5</li>
+</ul>
+{% endblock body %}
