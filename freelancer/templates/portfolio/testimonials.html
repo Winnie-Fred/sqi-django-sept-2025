@@ -1,16 +1,24 @@
 {% extends "partials/base.html" %}
+{% load static %}
 
 {% block title %}
 <title>Testimonials</title>
 {% endblock title %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/testimonials.css' %}">
+{% endblock extra_css %}
+
 {% block content %}
-<h1>Testimonials</h1>
-<div>
-    <ul>
+<section class="testimonials-section">
+    <h1 class="page-title">Testimonials</h1>
+    <ul class="testimonials-list">
         {% for customer, testimonial in testimonials.items %}
-            <li>{{ customer }}: {{ testimonial }}</li>
+            <li class="testimonial-item">
+                <strong class="customer">{{ customer }}</strong>
+                <p class="testimonial-text">{{ testimonial }}</p>
+            </li>
         {% endfor %}
     </ul>
-</div>
+</section>
 {% endblock content %}

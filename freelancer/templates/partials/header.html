@@ -1,11 +1,11 @@
-<header>
-    <nav>
-        <ul>
-            <li>Services</li>
-            <li>Testimonials</li>
-            <li>Case Studies</li>
-            <li>Blog</li>
-            <li>Pricing</li>
+<header class="header">
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li><a class="nav-link" href="{% url 'portfolio:services' %}">Services</a></li>
+            <li><a class="nav-link" href="{% url 'portfolio:testimonials' %}">Testimonials</a></li>
+            <li><a class="nav-link" href="{% url 'portfolio:case_studies' %}">Case Studies</a></li>
+            <li><a class="nav-link" href="{% url 'portfolio:blog' %}">Blog</a></li>
+            <li><a class="nav-link" href="{% url 'portfolio:pricing' %}">Pricing</a></li>
         </ul>
     </nav>
 </header>

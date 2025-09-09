@@ -1,16 +1,23 @@
 {% extends "partials/base.html" %}
+{% load static %}
+
+
 
 {% block title %}
 <title>Services</title>
 {% endblock title %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/services.css' %}">
+{% endblock extra_css %}
+
 {% block content %}
-<h1>Services</h1>
-<div>
-    <ul>
+<section class="services-section">
+    <h1 class="page-title">Services</h1>
+    <ul class="services-list">
         {% for service in services %}
-            <li>{{ service }}</li>
+            <li class="service-item">{{ service }}</li>
         {% endfor %}
     </ul>
-</div>
+</section>
 {% endblock content %}

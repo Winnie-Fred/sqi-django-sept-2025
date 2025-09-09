@@ -1,9 +1,10 @@
 <header>
     <nav>
         <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact</li>
+            <li><a href="{% url 'pages:home' %}">Pages Home</a></li>
+            <li><a href="{% url 'dtl:home' %}">DTL Home</a></li>
+            <li><a href="{% url 'pages:about' %}">About</a></li>
+            <li><a href="{% url 'pages:contact' %}">Contact</a></li>
         </ul>
     </nav>
 </header>

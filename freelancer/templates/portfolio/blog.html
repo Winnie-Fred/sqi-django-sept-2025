@@ -1,12 +1,23 @@
 {% extends "partials/base.html" %}
-
+{% load static %}
 {% block title %}
 <title>Blog</title>
 {% endblock title %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+{% endblock extra_css %}
+
 {% block content %}
-<h1>Blog</h1>
-<div>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae corrupti cum culpa numquam dignissimos recusandae tempora, ab sit adipisci modi aliquid natus? Ratione quae ullam veniam repellat, qui facere exercitationem.
-</div>
+<section class="blog-section">
+    <h1 class="blog-title">Blog</h1>
+    <div class="blog-post">
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Beatae corrupti cum culpa numquam dignissimos recusandae tempora, 
+            ab sit adipisci modi aliquid natus? 
+            Ratione quae ullam veniam repellat, qui facere exercitationem.
+        </p>
+    </div>
+</section>
 {% endblock content %}

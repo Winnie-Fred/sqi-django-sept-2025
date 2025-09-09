@@ -1,13 +1,22 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block title %}Freelancer Portfolio Website{% endblock title %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block extra_css %}{% endblock extra_css %}
 </head>
-<body>
+<body class="body">
     {% include "partials/header.html" %}
-    {% block content %}
-    {% endblock content %}
+    <main class="main-content">
+        {% block content %}{% endblock content %}
+    </main>
+
+{% block scripts %}
+
+{% endblock scripts %}
 </body>
 </html>

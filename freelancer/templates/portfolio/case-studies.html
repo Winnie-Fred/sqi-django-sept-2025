@@ -1,12 +1,31 @@
 {% extends "partials/base.html" %}
+{% load static %}
+
+
 
 {% block title %}
 <title>Case Studies</title>
 {% endblock title %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/case_studies.css' %}">
+{% endblock extra_css %}
+
 {% block content %}
-<h1>Case Studies</h1>
-<div>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae corrupti cum culpa numquam dignissimos recusandae tempora, ab sit adipisci modi aliquid natus? Ratione quae ullam veniam repellat, qui facere exercitationem.
-</div>
+<section class="case-studies-section">
+    <h1 class="page-title">Case Studies</h1>
+    <div class="case-study">
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Beatae corrupti cum culpa numquam dignissimos recusandae tempora,
+            ab sit adipisci modi aliquid natus?
+        </p>
+    </div>
+</section>
+<script></script>
 {% endblock content %}
+
+
+{% block scripts %}
+<script></script>
+{% endblock scripts %}

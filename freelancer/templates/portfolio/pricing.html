@@ -1,16 +1,26 @@
 {% extends "partials/base.html" %}
+{% load static %}
+
+
 
 {% block title %}
 <title>Pricing</title>
 {% endblock title %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pricing.css' %}">
+{% endblock extra_css %}
+
 {% block content %}
-<h1>Pricing</h1>
-<div>
-    <ul>
+<section class="pricing-section">
+    <h1 class="page-title">Pricing</h1>
+    <ul class="pricing-list">
         {% for service, price in pricing.items %}
-            <li>{{ service }}: {{ price }}</li>
+            <li class="pricing-item">
+                <span class="service">{{ service }}</span>
+                <span class="price">{{ price }}</span>
+            </li>
         {% endfor %}
     </ul>
-</div>
+</section>
 {% endblock content %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 
 from django.utils import timezone
 
@@ -27,3 +27,7 @@ def django_template_language(request):
         "today": timezone.now()
     }
     return render(request, "dtl/dtl.html", context)
+
+
+def home(request):
+    return HttpResponse('<h1>This is the DTL home page</h1>')

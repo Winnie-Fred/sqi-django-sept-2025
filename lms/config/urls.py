@@ -17,9 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from dtl.views import home
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('library/', include('library.urls')),
     path('authors/', include('authors.urls')), 
     path('dtl/', include('dtl.urls')), 
+    path('', include('pages.urls')),
+
 ]
