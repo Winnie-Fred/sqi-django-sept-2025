@@ -1,4 +1,7 @@
 {% extends "partials/base.html" %}
+{% load static %}
+
+
 
 {% block title %}
 DTL
@@ -47,3 +50,8 @@ DTL
     {% endfor %}
 </div>
 {% endblock body %}
+
+
+{% block extra_scripts %}
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock extra_scripts %}
