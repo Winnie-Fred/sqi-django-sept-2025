@@ -1,0 +1,20 @@
+{% extends "partials/base.html" %}
+{% load static %}
+
+
+{% block title %}
+Home
+{% endblock title %}
+
+
+{% block body %}
+<div>
+    <h2>Barka Library</h2>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione et deleniti, facilis, pariatur incidunt ipsa voluptatibus amet consequuntur atque eos id ab neque nihil nam nostrum, suscipit illum iste soluta?</p>
+</div>
+{% endblock body %}
+
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock extra_styles %}
