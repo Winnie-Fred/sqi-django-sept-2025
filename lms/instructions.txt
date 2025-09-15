@@ -1,0 +1,5 @@
+- Fetch all the authors
+- Fetch all the books
+- Fetch the author with more than one book and store in a variable called chosen_author
+- Fetch all the books by chosen_author using related name
+- Fetch all the authors born before the year 2000

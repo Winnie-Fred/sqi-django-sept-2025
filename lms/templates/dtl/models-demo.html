@@ -1,0 +1,74 @@
+{% extends "partials/base.html" %}
+{% load static %}
+
+
+
+{% block title %}
+DTL
+{% endblock title %}
+
+
+{% block body %}
+<h1>Django Models Demo</h1>
+
+<h2>All The Authors</h2>
+<div>
+    {% for author in all_authors %}
+        <p>{{ author.first_name }} {{ author.last_name }}</p>
+    {% endfor %}
+</div>
+
+<h2>All Books</h2>
+
+<div>
+    {% for book in all_the_books %}
+        <p>{{ book.title }}</p>
+    {% endfor %}
+</div>
+
+<h2>All Authors Descending</h2>
+
+<div>
+    {% for author in authors_desc %}
+        <p>{{ author.first_name }} {{ author.last_name }}</p>
+    {% endfor %}
+</div>
+
+<h2>First Author</h2>
+
+<div>
+    <p>First Author: {{ first_author.first_name }} {{ first_author.last_name }}</p>
+</div>
+
+
+<h2>Nonexistent Author</h2>
+
+<div>
+    <p>{{ nonexistent_author }}</p>
+</div>
+
+<h2>Authors ordered by Birth Date</h2>
+
+<div>
+    {% for author in authors_ordered_by_birthdate %}
+        <p>{{ author.first_name }} {{ author.last_name }}</p>
+    {% endfor %}
+</div>
+
+<h2>Books published after 2001</h2>
+
+<div>
+    {% for book in books_published_after_2001 %}
+        <p>{{ book.title }}</p>
+    {% endfor %}
+</div>
+
+<h2>Books by Paul</h2>
+
+<div>
+    {% for book in paul.book_set.all %}
+        <p>{{ book.title }} published on {{ book.published_on }}</p>
+    {% endfor %}
+</div>
+
+{% endblock body %}
