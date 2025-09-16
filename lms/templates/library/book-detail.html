@@ -1,0 +1,22 @@
+{% extends "partials/base.html" %}
+
+{% block title %}
+{{ book.title }}
+{% endblock title %}
+
+
+{% block body %}
+<h1>{{ book.title }}</h1>
+<div>
+    
+    <h3>{{ book.title }}</h3>
+    <h4>By {{ book.author }}</h4>
+    <p>Number of Pages: {{ book.number_of_pages }}</p>
+    <p>Published On: {{ book.published_on }}</p>
+    {% if book.cover_image %}
+        <img width="100" height="100" src="{{ book.cover_image.url }}" alt="Image for {{ book.title }}">
+    {% else %}
+        <p>No image for {{ book.title }}</p>
+    {% endif %}
+</div>
+{% endblock body %}
