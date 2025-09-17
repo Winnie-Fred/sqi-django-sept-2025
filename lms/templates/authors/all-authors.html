@@ -6,6 +6,7 @@
 <h1>List of Authors</h1>
 
 <div>
+{% csrf_token %}
     {% for author in all_authors %}
         <h3><a href="{% url 'authors:author_detail' author.id %}">{{ author.first_name }} {{ author.last_name }}</a></h3>
         <p>Born on {{ author.birth_date }}</p>
@@ -13,5 +14,5 @@
     {% endfor %}
 </div>
 
-
+{% comment %} csrf - cross-site request forgery attack {% endcomment %}
 {% endblock body %}

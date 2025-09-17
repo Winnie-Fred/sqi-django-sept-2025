@@ -7,4 +7,5 @@ urlpatterns = [
     path('', views.all_authors, name='all_authors'),
     path('book-signings/', views.book_signings, name='book_signings'),
     path('author/<str:author_pk>/', views.author_detail, name='author_detail'),
+    path('add/author/', views.create_author, name='create_author'),
 ]

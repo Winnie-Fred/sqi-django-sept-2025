@@ -1,0 +1,17 @@
+{% extends "partials/base.html" %}
+
+{% block title %}Add Author{% endblock title %}
+
+{% block body %}
+<h1>Add Author</h1>
+
+<div>
+    <form action="{% url 'authors:create_author' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Author</button>
+    </form>    
+</div>
+
+{% comment %} csrf - cross-site request forgery attack {% endcomment %}
+{% endblock body %}
