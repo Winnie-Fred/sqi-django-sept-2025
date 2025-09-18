@@ -3,7 +3,7 @@ from django.http import Http404
 
 from .models import Book
 from library.models import Author
-from .forms import BookForm
+from .forms import BookForm, BookManualForm
 
 # Create your views here.
 
@@ -37,3 +37,43 @@ def create_book(request):
         'form': form
     }
     return render(request, "library/create-book.html", context)
+
+
+def create_book_manually_rendered(request):
+    all_authors = Author.objects.all()
+    form = BookForm()
+    if request.method == "POST":
+        form = BookForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()       
+            return redirect('library:book_list')
+        else:
+            print(form.errors)
+
+    context = {
+        'form': form,
+        'all_authors': all_authors
+    }
+    return render(request, "library/create-book-manually-rendered.html", context)
+
+
+def create_book_django_manual_form(request):
+    form = BookManualForm()
+    if request.method == "POST":
+        form = BookManualForm(request.POST, request.FILES)
+        if form.is_valid():
+            cleaned_data = form.cleaned_data
+            # Book.objects.create(
+            #     title=cleaned_data.get('title'),
+            #     author=cleaned_data.get('author'),
+            #     number_of_pages=cleaned_data.get('number_of_pages'),
+            #     published_on=cleaned_data.get('published_on'),
+            #     cover_image=cleaned_data.get('cover_image')
+            # )
+            Book.objects.create(**cleaned_data)
+            return redirect('library:book_list')
+
+
+    context = {'form': form}
+    return render(request, "library/create-book-django-manual-form.html", context)
