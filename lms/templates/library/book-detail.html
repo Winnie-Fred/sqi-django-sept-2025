@@ -19,4 +19,11 @@
         <p>No image for {{ book.title }}</p>
     {% endif %}
 </div>
+
+<div>
+    {% comment %} <a href="{% url 'library:update_book_model_form' book.id %}">Update Book</a> {% endcomment %}
+    <a href="{% url 'library:update_book_manual_form' book.id %}">Update Book</a>
+    <a href="{% url 'library:confirm_delete' book.id %}">Delete Book</a>
+</div>
+
 {% endblock body %}

@@ -1,0 +1,19 @@
+{% extends "partials/base.html" %}
+
+{% block title %}
+Add a Book
+{% endblock title %}
+
+
+{% block body %}
+<h1>Update Book</h1>
+<form action="{% url 'library:update_book_model_form' book.id %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+        {{ form.as_p }}
+    </div>
+    <button type="submit">Update Book</button>
+</form>
+{% endblock body %}
+
+{% comment %} django crsipy forms {% endcomment %}
