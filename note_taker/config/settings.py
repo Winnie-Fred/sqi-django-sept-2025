@@ -125,3 +125,9 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+LOGIN_URL = 'accounts:log_in'
+LOGIN_REDIRECT_URL = 'notes:note_list'
+LOGOUT_REDIRECT_URL = 'accounts:log_in'

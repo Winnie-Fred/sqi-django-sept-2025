@@ -1,20 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ note.title }}</title>
-</head>
-<body>
-    <div>
-        <h2>{{ note.title }}</h2>
-        <p>{{ note.content }}</p>
-        <p>{{ note.get_category_display }}</p>
-        <p>{{ note.created_at }}</p>
-    </div>
-    <div>
+{% extends "partials/base.html" %}
+
+{% block title %}
+{{ note.title }}
+{% endblock title %}
+
+{% block body %}
+
+
+<div>
+    <h2>{{ note.title }}</h2>
+    <p>{{ note.content }}</p>
+    <p>{{ note.get_category_display }}</p>
+    <p>{{ note.created_at }}</p>
+    <p>Added By: {{ note.added_by }}</p>
+</div>
+<div>
+    {% if note.added_by == request.user %}
         <a href="{% url 'notes:update_note' note.id %}">Edit Note</a>
+    {% else %}
+        <a class="link-btn disabled"
+            aria-disabled="true"
+            tabindex="-1"
+            title="You don't have permission to edit this note">Edit Note</a>
+    {% endif %}
+    {% if note.added_by == request.user %}
         <a href="{% url 'notes:confirm_delete' note.id %}">Delete Note</a>
-    </div>
-</body>
-</html>
+    {% else %}
+        <a class="link-btn disabled"
+            aria-disabled="true"
+            tabindex="-1"
+            title="You don't have permission to edit this note">Delete Note</a>
+    {% endif %}
+</div>
+{% endblock body %}

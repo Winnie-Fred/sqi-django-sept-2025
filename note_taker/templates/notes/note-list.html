@@ -1,39 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Note Taker</title>
-</head>
-<body>
-    <div>
-        <a href="{% url 'notes:add_note' %}">Add Note</a>
-    </div>
-    <div>
-        <form>
-            {{ search_form.as_p }}
-            <button type="submit">Search</button>
-        </form>
-    </div>
-    <div>
-        {% comment %} <form>
-            {{ filter_form.as_p }}
-            <button type="submit">Filter</button>
-        </form> {% endcomment %}
-        {% for key, value in filter_form.fields.category.choices %}
-            <a href="{% url 'notes:note_list' %}?category={{ key }}">{{ value }}</a>
-        {% endfor %}
+{% extends "partials/base.html" %}
+
+{% block title %}
+Note Taker
+{% endblock title %}
+
+{% block body %}
 
 
-    </div>
-    <div>
-        {% for note in notes %}
-            <div>
-                <h2><a href="{% url 'notes:note_detail' note.id %}">{{ note.title }}</a></h2>
-            </div>
-        {% empty %}
-        <p>No notes yet to display</p>
-        {% endfor %}
-    </div>
-</body>
-</html>
+<div>
+    <a href="{% url 'notes:add_note' %}">Add Note</a>
+</div>
+<div>
+    <form>
+        {{ search_form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+</div>
+<div>
+    {% comment %} <form>
+        {{ filter_form.as_p }}
+        <button type="submit">Filter</button>
+    </form> {% endcomment %}
+    {% for key, value in filter_form.fields.category.choices %}
+        <a href="{% url 'notes:note_list' %}?category={{ key }}">{{ value }}</a>
+    {% endfor %}
+
+
+</div>
+<div>
+    {% for note in notes %}
+        <div>
+            <h2><a href="{% url 'notes:note_detail' note.id %}">{{ note.title }}</a></h2>
+        </div>
+    {% empty %}
+    <p>No notes yet to display</p>
+    {% endfor %}
+</div>
+{% endblock body %}

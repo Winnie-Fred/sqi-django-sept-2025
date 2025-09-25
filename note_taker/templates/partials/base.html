@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Note Taker{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    {% if request.user.is_authenticated %}
+                    <form action="{% url 'accounts:log_out' %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit">Log Out</button>
+                    </form>
+                    {% else %}
+                    <a href="{% url 'accounts:log_in' %}">Log In</a>
+                    {% endif %}
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+
+    {% if messages %}
+        <div class="message-div">
+            <ul class="message-ul">
+                {% for message in messages %}
+                    <li class="message-li-{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <h3>
+        {% if request.user.is_authenticated %}
+            Hello, {{ request.user.username }}
+        {% else %}
+            Hello, User
+        {% endif %}
+    </h3>
+
+    {% block body %}
+    {% endblock body %}
+</body>
+</html>

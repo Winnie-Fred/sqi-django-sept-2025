@@ -1,0 +1,191 @@
+:root{
+  --bg: #071022;
+  --surface: #0b1220;
+  --muted: #9aa4b2;
+  --accent: #7c5cff;
+  --success: #16a34a;
+  --error: #dc2626;
+  --warning: #f59e0b;
+  --info: #2563eb;
+  --card: rgba(255,255,255,0.02);
+  --radius: 8px;
+  --max-width: 980px;
+  --text: #e6eef6;
+}
+
+/* Reset / base */
+* { box-sizing: border-box; }
+html,body { height:100%; margin:0; padding:0; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial; color:var(--text); background: linear-gradient(180deg,#04101a 0%, #071022 100%); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+a { color: var(--accent); text-decoration:none; }
+a:hover { text-decoration:underline; }
+
+/* Header / nav - simplified and smaller */
+header {
+  background: linear-gradient(90deg, rgba(124,92,255,0.06), rgba(37,99,235,0.03));
+  border-bottom: 1px solid rgba(255,255,255,0.02);
+  position: sticky;
+  top:0;
+  z-index:50;
+}
+header nav {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 10px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+header nav ul { list-style:none; margin:0; padding:0; display:flex; gap:8px; align-items:center;}
+header nav li { display:inline-flex; align-items:center; }
+
+/* Page container used by children pages */
+.main {
+  max-width: var(--max-width);
+  margin: 22px auto;
+  padding: 18px;
+  background: transparent;
+  border-radius: 12px;
+}
+
+/* Headings & small text */
+h1,h2,h3 { margin:0 0 8px 0; font-weight:700; color:var(--text); }
+h3 { font-size:1rem; color:var(--text); font-weight:600; margin-bottom:12px; }
+label { display:block; margin-bottom:6px; font-weight:600; color:var(--text); }
+
+/* Form controls — tighter, consistent height */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea,
+select {
+  width:100%;
+  padding:10px 12px;
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.03);
+  color: var(--text);
+  border-radius: var(--radius);
+  font-size:0.96rem;
+  outline: none;
+  min-height:42px;
+}
+textarea { min-height:120px; resize:vertical; padding-top:10px; padding-bottom:10px; }
+input:focus, textarea:focus, select:focus {
+  box-shadow: 0 6px 20px rgba(124,92,255,0.06);
+  border-color: rgba(124,92,255,0.6);
+}
+
+/* Make helper/explanatory text less aggressive */
+.helptext, .field-help, .muted {
+  color: var(--muted);
+  font-size:0.92rem;
+  margin-top:6px;
+}
+
+/* Buttons */
+button, .btn {
+  background: linear-gradient(90deg,var(--accent), #5b6fff);
+  color: #fff;
+  padding:8px 12px;
+  border-radius:10px;
+  border: none;
+  font-weight:700;
+  cursor:pointer;
+  min-height:40px;
+}
+.btn-ghost {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.04);
+  color: var(--text);
+}
+
+/* Note list/cards */
+.note-list { display:grid; gap:12px; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); margin-top:14px; }
+.note-card { background: var(--card); border-radius:12px; padding:12px; border:1px solid rgba(255,255,255,0.02); }
+
+/* FLASH MESSAGES: top-right, slide in from RIGHT, slide out to RIGHT */
+.message-div {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 1000;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  pointer-events: none;
+  max-width: calc(100vw - 36px);
+}
+.message-ul { margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px; }
+.message-ul li {
+  pointer-events: auto;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 14px;
+  min-width: 220px;
+  max-width: 420px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(2,6,23,0.55);
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.03);
+  color:var(--text);
+  font-weight:600;
+  transform: translateX(120%); /* start off-screen on the right */
+  opacity: 0;
+}
+
+/* message variants (tag names like message-li-success) */
+.message-li-success { border-left: 4px solid var(--success); background: linear-gradient(90deg, rgba(22,163,74,0.04), rgba(255,255,255,0.01)); }
+.message-li-error   { border-left: 4px solid var(--error);   background: linear-gradient(90deg, rgba(220,38,38,0.04), rgba(255,255,255,0.01)); }
+.message-li-warning { border-left: 4px solid var(--warning); background: linear-gradient(90deg, rgba(245,158,11,0.04), rgba(255,255,255,0.01)); }
+.message-li-info    { border-left: 4px solid var(--info);    background: linear-gradient(90deg, rgba(37,99,235,0.04), rgba(255,255,255,0.01)); }
+
+/* small colored dot */
+.message-ul li::before { content:""; width:10px; height:10px; border-radius:50%; margin-right:6px; opacity:0.95; }
+.message-li-success::before { background: var(--success); }
+.message-li-error::before   { background: var(--error); }
+.message-li-warning::before { background: var(--warning); }
+.message-li-info::before    { background: var(--info); }
+
+/* Animations: slideInRight then slideOutRight after 4s delay */
+@keyframes slideInRight {
+  from { transform: translateX(120%); opacity: 0; }
+  to   { transform: translateX(0);   opacity: 1; }
+}
+@keyframes slideOutRight {
+  from { transform: translateX(0);   opacity: 1; }
+  to   { transform: translateX(120%); opacity: 0; height:0; margin:0; padding:0; }
+}
+.message-ul li {
+  animation:
+    slideInRight 0.32s cubic-bezier(.2,.9,.2,1) forwards,
+    slideOutRight 0.48s ease-in 4s forwards;
+  will-change: transform, opacity;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .message-ul li { animation: none; transform:none; opacity:1; }
+}
+
+/* Responsive tweaks */
+@media (max-width:720px) {
+  header nav { padding: 8px 12px; }
+  .main { margin:12px; padding:12px; }
+  .message-div { right: 10px; left: 10px; top: 10px; }
+  .message-ul li { max-width: calc(100vw - 28px); }
+}
+
+.link-btn {
+  color: #0066cc;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.link-btn.disabled,
+.link-btn[aria-disabled="true"] {
+  color: #999;              /* grey text */
+  text-decoration: none;    /* remove underline */
+  cursor: not-allowed;      /* show not-allowed cursor */
+  pointer-events: none;     /* block clicks */
+}
