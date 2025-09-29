@@ -1,0 +1,18 @@
+{% extends "partials/base.html" %}
+
+{% block content %}
+<div class="lg-book-detail">
+  <div class="lg-book-detail-card">
+    <div class="lg-book-detail-cover">
+      <img src="{{ book.cover_image.url }}" alt="Image of {{ book.title }}'s cover Image">
+    </div>
+    <div class="lg-book-detail-info">
+      <h1 class="lg-book-detail-title">{{ book.title }}</h1>
+      <p class="lg-book-detail-author">by {{ book.author }}</p>
+      <p class="lg-book-detail-meta">{{ book.get_genre_display }}</p>
+      <p class="lg-book-detail-meta">{{ book.number_of_pages }} pages</p>
+      <p class="lg-book-detail-meta">Published on {{ book.publication_date }}</p>
+    </div>
+  </div>
+</div>
+{% endblock content %}

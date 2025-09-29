@@ -1,0 +1,95 @@
+{% extends 'partials/base.html' %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+{% block content %}
+<aside class="lg-side">
+<div class="lg-card lg-profile-card">
+    <div class="lg-profile">
+    <div class="lg-avatar"><img src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&s=abcd" alt="avatar"></div>
+    <div class="lg-profile-info">
+        <div class="lg-profile-name">Winnie</div>
+        <div class="lg-profile-role">Reader • Backend dev</div>
+    </div>
+    </div>
+</div>
+
+<div class="lg-card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+    <strong>Discover</strong>
+    <span class="muted">filters</span>
+    </div>
+    <div class="lg-filter-list">
+    <div class="lg-filter-pill">Fiction</div>
+    <div class="lg-filter-pill">Mystery</div>
+    <div class="lg-filter-pill">Non-fiction</div>
+    <div class="lg-filter-pill">Poetry</div>
+    </div>
+</div>
+
+<div class="lg-card">
+    <strong>Top authors</strong>
+    <div style="display:flex;gap:8px;margin-top:12px">
+    <div style="width:40px;height:40px;border-radius:10px;overflow:hidden"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&s=efgh" style="width:100%;height:100%;object-fit:cover"></div>
+    <div style="width:40px;height:40px;border-radius:10px;overflow:hidden"><img src="https://images.unsplash.com/photo-1545996124-5e7f0f1a7f9a?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&s=ijkl" style="width:100%;height:100%;object-fit:cover"></div>
+    <div style="width:40px;height:40px;border-radius:10px;overflow:hidden"><img src="https://images.unsplash.com/photo-1544006659-f0b21884ce1d?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&s=mnop" style="width:100%;height:100%;object-fit:cover"></div>
+    </div>
+</div>
+</aside>
+
+<section class="lg-content">
+
+<div class="lg-hero">
+    <div class="lg-hero-left">
+    <h1 class="lg-hero-title">Time to wind down?</h1>
+    <p class="lg-hero-sub">We’ve got handpicked picks and cozy covers to carry you through the evening. Tell us what you like and we'll do the rest.</p>
+    <div class="lg-hero-cta">
+        <button class="lg-btn lg-btn--primary">Continue</button>
+        <button class="lg-btn lg-btn--ghost">Browse</button>
+    </div>
+    </div>
+    <div class="lg-hero-right" style="width:240px;display:flex;flex-direction:column;gap:12px">
+    <div class="lg-card" style="padding:10px;display:flex;flex-direction:column;align-items:center">
+        <div style="width:100px;height:140px;border-radius:10px;overflow:hidden;margin-bottom:12px;background:linear-gradient(180deg,#e3f7f0,#dcd1ff)"></div>
+        <div class="muted" style="font-size:12px">Our popular titles</div>
+    </div>
+    <div class="lg-card" style="padding:10px;display:flex;flex-direction:column;align-items:center">
+        <div style="width:100px;height:140px;border-radius:10px;overflow:hidden;margin-bottom:12px;background:linear-gradient(180deg,#ffdfe8,#e7f9f2)"></div>
+        <div class="muted" style="font-size:12px">Highest rated</div>
+    </div>
+    </div>
+</div>
+
+{% block page_content %}
+<!-- Example grid. Replace this block with book-list template content -->
+<div class="lg-card" style="margin-bottom:14px">
+    <strong>Recommended for you</strong>
+    <div class="lg-grid" style="margin-top:12px">
+    <div class="lg-book">
+        <div class="lg-book-cover"><img src="https://images.unsplash.com/photo-1544937954-2f6d7f1692d2?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&s=qrst" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="lg-book-title">Into the Free World</div>
+        <div class="lg-book-author">Olivia Scott</div>
+    </div>
+    <div class="lg-book">
+        <div class="lg-book-cover"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&s=uvwx" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="lg-book-title">Into Our Minds</div>
+        <div class="lg-book-author">James Lopez</div>
+    </div>
+    <div class="lg-book">
+        <div class="lg-book-cover"><img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&s=yzab" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="lg-book-title">It’s getting spicy!</div>
+        <div class="lg-book-author">Various</div>
+    </div>
+    </div>
+</div>
+{% endblock page_content %}
+
+<footer class="lg-footer">
+    <div class="muted">© {{ current_year|default:"2025" }} Linkon GoodReads</div>
+    <div class="muted">Made with care • v1.0</div>
+</footer>
+
+</section>
+{% endblock content %}
