@@ -2,6 +2,12 @@ import os
 
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.core.validators import MinValueValidator, MaxValueValidator
+from django.contrib.auth import get_user_model
+from django.utils import timezone
+from datetime import timedelta
+
+User = get_user_model()
 
 # Create your models here.
 
@@ -48,3 +54,16 @@ class Book(models.Model):
     def __str__(self):
         return f"{self.title} by {self.author}"
     
+
+
+class Review(models.Model):
+    rating = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    content = models.TextField()
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name="reviews")
+    added_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="reviews")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def can_still_be_edited(self):
+        now = timezone.now()
+        return now - self.created_at <= timedelta(minutes=5)

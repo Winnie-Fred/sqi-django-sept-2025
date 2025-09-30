@@ -1,18 +1,66 @@
 {% extends "partials/base.html" %}
 
 {% block content %}
-<div class="lg-book-detail">
-  <div class="lg-book-detail-card">
+<div class="lg-book-detail">                           {# page container - center column #}
+  <div class="lg-book-detail-card">                    {# the main card: cover + info #}
     <div class="lg-book-detail-cover">
       <img src="{{ book.cover_image.url }}" alt="Image of {{ book.title }}'s cover Image">
     </div>
+
     <div class="lg-book-detail-info">
       <h1 class="lg-book-detail-title">{{ book.title }}</h1>
       <p class="lg-book-detail-author">by {{ book.author }}</p>
       <p class="lg-book-detail-meta">{{ book.get_genre_display }}</p>
       <p class="lg-book-detail-meta">{{ book.number_of_pages }} pages</p>
       <p class="lg-book-detail-meta">Published on {{ book.publication_date }}</p>
+      {# optionally add a Back button here #}
     </div>
+  </div>
+
+  {# REVIEWS: placed under the card but inside the same outer container #}
+  <div class="lg-reviews">
+    <h2 class="lg-reviews-title">Leave a Review on "{{ book.title }}"</h2>
+
+    <div class="lg-reviews-list">
+      {% for review in book.reviews.all %}
+      <article class="lg-review-card" role="article" aria-label="review-{{ review.id }}">
+        <div class="lg-review-body">
+          <p class="lg-review-text">{{ review.content }}</p>
+        </div>
+        <div class="lg-review-meta">
+          <span class="lg-review-rating">⭐ {{ review.rating }}/5</span>
+          <time class="lg-review-time">at {{ review.created_at }}</time>
+          <div class="lg-review-actions">
+            <a href="{% url 'book_review:edit_review' review.id %}"
+              class="lg-review-link lg-review-edit"
+              aria-label="Edit review {{ review.id }}">
+              Edit
+            </a>
+
+            <a href="{% url 'book_review:confirm_delete' review.id %}"
+              class="lg-review-link lg-review-delete"
+              aria-label="Delete review {{ review.id }}">
+              Delete
+            </a>
+          </div>
+        </div>
+      </article>
+      {% empty %}
+      <p class="lg-muted">No reviews yet — be the first to leave one.</p>
+      {% endfor %}
+    </div>
+
+    <section class="lg-review-form-wrap">
+      <h3 class="lg-review-form-title">Write a review</h3>
+      <form class="lg-review-form" action="{% url 'book_review:book_detail' book.id %}" method="POST" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="lg-form-actions">
+          <button type="submit" class="lg-btn lg-btn--primary lg-review-submit">Leave review</button>
+          <button type="reset" class="lg-btn lg-btn--ghost">Reset</button>
+        </div>
+      </form>
+    </section>
   </div>
 </div>
 {% endblock content %}

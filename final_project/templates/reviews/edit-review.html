@@ -1,0 +1,23 @@
+{% extends "partials/base.html" %}
+
+{% block content %}
+<div class="lg-book-detail">                           {# page container - center column #}
+
+
+  {# REVIEWS: placed under the card but inside the same outer container #}
+  <div class="lg-reviews">
+    <h2 class="lg-reviews-title">Edit Your Review on "{{ review.book.title }}"</h2>
+    <section class="lg-review-form-wrap">
+      <h3 class="lg-review-form-title">Edit Your review</h3>
+      <form class="lg-review-form" action="{% url 'book_review:edit_review' review.id %}" method="POST" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="lg-form-actions">
+          <button type="submit" class="lg-btn lg-btn--primary lg-review-submit">Leave review</button>
+          <button type="reset" class="lg-btn lg-btn--ghost">Reset</button>
+        </div>
+      </form>
+    </section>
+  </div>
+</div>
+{% endblock content %}

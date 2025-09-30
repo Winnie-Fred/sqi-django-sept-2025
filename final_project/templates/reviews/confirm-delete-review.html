@@ -1,0 +1,41 @@
+{% extends "partials/base.html" %}
+
+{% block content %}
+<div class="lg-book-detail">                           {# page container - center column #}
+
+  <div class="lg-reviews">
+    <h2 class="lg-reviews-title">Are you sure you want to delete your review on "{{ review.book.title }}"?</h2>
+    <section class="lg-review-form-wrap">
+      <h3 class="lg-review-form-title">Edit Your review</h3>
+      <div class="lg-reviews-list">
+      <article class="lg-review-card" role="article" aria-label="review-{{ review.id }}">
+        <div class="lg-review-body">
+          <p class="lg-review-text">{{ review.content }}</p>
+        </div>
+        <div class="lg-review-meta">
+          <span class="lg-review-rating">⭐ {{ review.rating }}/5</span>
+          <time class="lg-review-time">at {{ review.created_at }}</time>
+          <div class="lg-review-actions">
+          <form action="{% url 'book_review:delete_review' review.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit"
+                    class="lg-review-btn lg-review-edit"
+                    data-review-id="{{ review.id }}"
+                    aria-label="Delete review {{ review.id }}">
+                Yes, I am sure
+            </button>
+          </form>
+
+            <a href="{% url 'book_review:book_detail' review.book.id %}"
+              class="lg-review-link lg-review-delete"
+              aria-label="Return to {{ review.book.id }}">
+              No, take me back
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+    </section>
+  </div>
+</div>
+{% endblock content %}

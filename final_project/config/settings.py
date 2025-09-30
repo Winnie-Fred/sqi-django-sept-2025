@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # Local
     'book_review',
+    'accounts',
 
 ]
 
@@ -129,3 +130,8 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGIN_URL = 'accounts:log_in'
+LOGIN_REDIRECT_URL = 'book_review:all_books'
+LOGOUT_REDIRECT_URL = 'book_review:all_books'

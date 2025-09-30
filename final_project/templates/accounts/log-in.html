@@ -1,0 +1,27 @@
+{% extends "partials/base.html" %}
+
+{% block content %}
+<div class="lg-book-detail">                           {# page container - center column #}
+
+
+  {# REVIEWS: placed under the card but inside the same outer container #}
+  <div class="lg-reviews">
+    <h2 class="lg-reviews-title">Log In to Your Account</h2>
+    <section class="lg-review-form-wrap">
+      <h3 class="lg-review-form-title">Log In</h3>
+      <form class="lg-review-form" action="{% url 'accounts:log_in' %}" method="POST" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="lg-form-actions">
+          <button type="submit" class="lg-btn lg-btn--primary lg-review-submit">Log In</button>
+          <a href="{% url 'accounts:sign_up' %}"
+              class="lg-review-link lg-review-edit"
+              aria-label="Log In">
+              Sign Up
+            </a>
+        </div>
+      </form>
+    </section>
+  </div>
+</div>
+{% endblock content %}

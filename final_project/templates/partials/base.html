@@ -24,6 +24,19 @@
         </div>
       </div>
 
+      {% if messages %}
+        <div class="message-div">
+          <ul class="message-ul">
+            {% for message in messages %}
+              <li class="message-li-{{ message.tags }}">
+                <span class="message-text">{{ message }}</span>
+                <button class="message-close" aria-label="Dismiss">&times;</button>
+              </li>
+            {% endfor %}
+          </ul>        
+        </div>
+      {% endif %}
+
       <div class="lg-actions">
         <div class="lg-search">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
@@ -32,8 +45,15 @@
           </svg>
           <input class="lg-search-input" placeholder="Search books, authors..." />
         </div>
-        <button class="lg-btn lg-btn--ghost">Log in</button>
-        <button class="lg-btn lg-btn--primary">Get started</button>
+         {% if request.user.is_authenticated %}
+          <form action="{% url 'accounts:log_out' %}" method="POST">
+            {% csrf_token %}
+            <button class="lg-btn lg-btn--ghost">Log out</button>
+          </form>
+        {% else %}
+            <a href="{% url 'accounts:log_in' %}" class="lg-btn lg-btn--ghost">Log in</a>
+        {% endif %}
+        <a class="lg-btn lg-btn--primary">Sign Up</a>
       </div>
     </header>
 
@@ -46,5 +66,16 @@
   </div>
 
   {% block scripts %}{% endblock scripts %}
+
+<script>
+  document.addEventListener("click", function(e) {
+    if (e.target.classList.contains("message-close")) {
+      e.target.closest("li").remove();
+    }
+  });
+</script>
+
+
+
 </body>
 </html>
